@@ -1,0 +1,77 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{userId} {
+      allow read: if request.auth != null
+                    && request.auth.uid == userId
+                    && request.auth.token.email_verified == true;
+
+      allow create: if request.auth != null
+                    && request.auth.uid == userId
+                    && request.auth.token.email_verified == true
+                    && request.resource.data.name is string
+                    && request.resource.data.email == request.auth.token.email
+                    && request.resource.data.totalBookings == 0
+                    && request.resource.data.totalHours == 0
+                    && request.resource.data.savedAmount == 0;
+
+      allow update: if request.auth != null
+                    && request.auth.uid == userId
+                    && request.auth.token.email_verified == true
+                    && request.resource.data.diff(resource.data).affectedKeys()
+                       .hasOnly(['name', 'phone']);
+
+      allow delete: if false;
+
+      match /vehicles/{vehicleId} {
+        allow read: if request.auth != null
+                      && request.auth.uid == userId
+                      && request.auth.token.email_verified == true;
+        allow create, update: if request.auth != null
+                      && request.auth.uid == userId
+                      && request.auth.token.email_verified == true
+                      && request.resource.data.plate is string
+                      && request.resource.data.model is string
+                      && request.resource.data.color is string;
+        allow delete: if request.auth != null
+                      && request.auth.uid == userId
+                      && request.auth.token.email_verified == true;
+      }
+
+      match /bookings/{bookingId} {
+        allow read: if request.auth != null
+                      && request.auth.uid == userId
+                      && request.auth.token.email_verified == true;
+        allow create: if request.auth != null
+                      && request.auth.uid == userId
+                      && request.auth.token.email_verified == true;
+        allow update: if request.auth != null
+                      && request.auth.uid == userId
+                      && request.auth.token.email_verified == true
+                      && request.resource.data.diff(resource.data).affectedKeys()
+                         .hasOnly(['status', 'endHour']);
+        allow delete: if false;
+      }
+
+      match /paymentMethods/{paymentMethodId} {
+        allow read: if request.auth != null
+                      && request.auth.uid == userId
+                      && request.auth.token.email_verified == true;
+        allow create, update: if request.auth != null
+                      && request.auth.uid == userId
+                      && request.auth.token.email_verified == true
+                      && !('cardNumber' in request.resource.data.keys())
+                      && !('cvv' in request.resource.data.keys());
+        allow delete: if request.auth != null
+                      && request.auth.uid == userId
+                      && request.auth.token.email_verified == true;
+      }
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Center badge (within 66dp safe zone: bounds approx 21..87) -->
+    <!-- Location Pin / Shield Base -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M54,22 C41,22 30.5,32.5 30.5,45.5 C30.5,61.5 50,78 52.4,80 C53.3,80.7 54.7,80.7 55.6,80 C58,78 77.5,61.5 77.5,45.5 C77.5,32.5 67,22 54,22 Z" />
+    <!-- Inner Dark Shield -->
+    <path
+        android:fillColor="#0B192C"
+        android:pathData="M54,25.5 C43,25.5 34,34.5 34,45.5 C34,58.5 49.5,72.5 54,76 C58.5,72.5 74,58.5 74,45.5 C74,34.5 65,25.5 54,25.5 Z" />
+    <!-- Bold 'P' parking letter in white -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M46,34 L56,34 C60.4,34 64,36.6 64,41 C64,45.4 60.4,48 56,48 L50.5,48 L50.5,58 L46,58 Z M50.5,38 L50.5,44 L55.5,44 C57.7,44 59.5,42.8 59.5,41 C59.5,39.2 57.7,38 55.5,38 Z" />
+    <!-- Vibrant Emerald Available Dot -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M65,33 C65,30.8 66.8,29 69,29 C71.2,29 73,30.8 73,33 C73,35.2 71.2,37 69,37 C66.8,37 65,35.2 65,33 Z" />
+</vector>

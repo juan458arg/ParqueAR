@@ -1,0 +1,6 @@
+{
+  "name": "ParkSpot",
+  "description": "Maqueta de app móvil para reservar estacionamientos estilo Booking con mapa interactivo, detalle, franja horaria, checkout y pases QR.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
